@@ -30,6 +30,9 @@ class EventsController < ApplicationController
   def update
     if params[:like].present?
       @event.increment!(:likes_count)
+      # @events = Event.order(start_date: :desc)
+      # return
+      Turbo::StreamsChannel.broadcast_refresh_to "events_broadcaster"
       return redirect_to events_path
     end
     respond_to do |format|
@@ -43,7 +46,7 @@ class EventsController < ApplicationController
 
   def destroy
     @event.destroy!
-
+    Turbo::StreamsChannel.broadcast_refresh_to "events_broadcaster"
     respond_to do |format|
       format.html { redirect_to events_url, notice: "Event was successfully destroyed." }
     end

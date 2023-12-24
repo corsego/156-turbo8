@@ -1,0 +1,28 @@
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th colspan="2">Likes</th>
+      <th>Location</th>
+      <th>Start date</th>
+      <th colspan="3">Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @events.each do |event| %>
+      <tr>
+        <td><%= event.name %></td>
+        <td><%= event.likes_count %></td>
+        <td>
+          <%= button_to "Like", event_path(event), method: :patch, params: { like: true } %>
+        </td>
+        <td><%= event.location %></td>
+        <td><%= event.start_date.strftime("%d/%m/%Y") %></td>
+        <td><%= link_to 'Show', event %></td>
+        <td><%= link_to 'Edit', edit_event_path(event) %></td>
+        <td><%= button_to 'Destroy', event, method: :delete, data: { turbo_confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
