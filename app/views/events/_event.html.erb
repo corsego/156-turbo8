@@ -1,0 +1,22 @@
+<div id="<%= dom_id event %>">
+  <p>
+    <strong>Name:</strong>
+    <%= event.name %>
+  </p>
+
+  <p>
+    <strong>Likes count:</strong>
+    <%= event.likes_count %>
+  </p>
+
+  <p>
+    <strong>Location:</strong>
+    <%= event.location %>
+  </p>
+
+  <p>
+    <strong>Start date:</strong>
+    <%= event.start_date.strftime("%d/%m/%Y") %>
+  </p>
+
+</div>

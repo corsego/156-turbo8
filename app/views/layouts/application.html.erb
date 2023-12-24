@@ -11,6 +11,13 @@
   </head>
 
   <body>
-    <%= yield %>
+    <div style='position:fixed; background-color: silver; top: 0;'>
+      <p id="notice"><%= notice %></p>
+      <%= Time.zone.now%>
+    </div>
+
+    <main style="padding:30px;">
+      <%= yield %>
+    </main>
   </body>
 </html>
