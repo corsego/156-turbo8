@@ -28,6 +28,10 @@ class EventsController < ApplicationController
   end
 
   def update
+    if params[:like].present?
+      @event.increment!(:likes_count)
+      return redirect_to events_path
+    end
     respond_to do |format|
       if @event.update(event_params)
         format.html { redirect_to event_url(@event), notice: "Event was successfully updated." }
